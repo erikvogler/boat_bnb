@@ -238,10 +238,7 @@ PLATFORMS
   ruby
   x86_64-darwin-19
   x86_64-darwin-20
-<<<<<<< HEAD
-=======
   x86_64-linux
->>>>>>> 7d7dbe15d3e8e82e5ab553c49aff5b229c6fb993
 
 DEPENDENCIES
   autoprefixer-rails (= 10.2.5)
