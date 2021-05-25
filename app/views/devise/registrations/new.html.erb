@@ -4,6 +4,9 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
+    <%= f.input :first_name, label: 'First name', error: 'A first name is mandatory, please specify one'%>
+    <%= f.input :last_name, label: 'Last name', error: 'A last name is mandatory, please specify one'%>
+    <%= f.input :username, label: 'Username', error: 'A username is mandatory, please specify one', hint: 'Minimum 4 characters.'%>
     <%= f.input :email,
                 required: true,
                 autofocus: true,
