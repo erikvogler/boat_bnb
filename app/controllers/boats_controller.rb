@@ -1,14 +1,14 @@
 class BoatsController < ApplicationController
   def index
-    @bookings = Booking.all
+    @boats = Boat.all
   end
 
   def show
-    @booking = Booking.find(paramas[:id])
+    @boat = Boat.find(paramas[:id])
   end
 
   def new
-    @booking =  Booking.new
+    @boat =  Boat.new
   end
 
   def create
