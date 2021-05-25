@@ -7,13 +7,26 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
-10.times do |x|
-  Boat.create(
-  name: movie['title'],
-  description: movie['overview'],
-  pictures_url: "#{base_poster_url}#{movie['backdrop_path']}",
-  location: movie['vote_average']
-  price_per_night:
-
+20.times {
+ user = User.new(
+  first_name: Faker::Ancient.hero,
+  last_name: Faker::Artist.name,
+  address: Faker::Address.full_address,
+  email: Faker::Internet.email,
+  password: "123456",
   )
-end
+  user.save!
+}
+
+
+20.times {
+  boat = Boat.new(
+  name: Faker::Artist.name,
+  description: Faker::Lorem.paragraph(sentence_count: 3),
+  pictures_url: "https://source.unsplash.com/collection/11711054/1000x600",
+  location: Faker::Address.country,
+  price_per_night: rand(50..1000),
+  user_id: rand(1..10),
+  )
+  boat.save!
+}
