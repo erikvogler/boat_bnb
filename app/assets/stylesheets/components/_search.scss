@@ -1,0 +1,25 @@
+.banner form {
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+#search_location {
+border-radius: 32px;
+width: 480px;
+padding: 24px;
+font-size: 20px;
+}
+
+.search-button {
+border-radius: 32px;
+background: #EA580C;
+padding: 16px 24px;
+border: none;
+color: white;
+font-size: 20px;
+}
+
+.search_location label {
+    display:none;
+  }

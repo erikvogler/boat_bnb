@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
-
+puts "Seeding..."
 20.times {
  user = User.new(
   first_name: Faker::Ancient.hero,
@@ -17,6 +17,7 @@ require 'faker'
   password: "123456",
   )
   user.save!
+  puts "Creating user #{user.id}"
 }
 
 
@@ -30,4 +31,6 @@ require 'faker'
   user_id: rand(1..10),
   )
   boat.save!
+  puts "Creating boat #{boat.id}"
 }
+puts "Finished!"
