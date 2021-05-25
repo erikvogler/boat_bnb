@@ -1,9 +1,5 @@
-<% @boats.each do |boat| %>
-  <% boat.pictures_url.each do |picture| %>
-     <%=image_tag 'picture'%>
-  <% end %>
-  <h2><%= boat.name %></h2>
-  <p><%= boat.location %></p>
-  <p><%= boat.description %></p>
-  <p><%= boat.price_per_night %></p>
-<% end %>
+<%=image_tag @boat.pictures_url%>
+<h2><%= @boat.name %></h2>
+<p><%= @boat.location %></p>
+<p><%= @boat.description %></p>
+<p><%= @boat.price_per_night %></p>
