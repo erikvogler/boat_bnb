@@ -11,6 +11,7 @@ require 'faker'
  user = User.new(
   first_name: Faker::Ancient.hero,
   last_name: Faker::Artist.name,
+  username: Faker::BossaNova.artist,
   address: Faker::Address.full_address,
   email: Faker::Internet.email,
   password: "123456",
