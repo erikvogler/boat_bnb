@@ -1,0 +1,8 @@
+<%= simple_form_for @boat do |f| %>
+  <%= f.input :name, label: 'Boat name', error: 'Boat name is mandatory, please specify one' %>
+  <%= f.input :description, label: 'Description', error: 'A description is mandatory, please specify one', hint: 'Minimum 50 characters.'%>
+  <%= f.input :location, label: 'Boat location', error: 'A location is mandatory, please specify one'%>
+  <%= f.input :price_per_night, label: 'Price/night', error: 'A price per night is mandatory, please specify one', hint: 'Enter a number.'%>
+  <%= f.file_field :pictures_url, label: "Boat images", error: 'Pictures of your boat are mandatory, please upload at least one', hint: 'Upload pictures of your boat.(minimum 1)'%>
+  <%= f.button :submit, 'Create your boat listing'%>
+<% end %>
