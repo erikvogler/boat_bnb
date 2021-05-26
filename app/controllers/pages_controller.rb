@@ -5,6 +5,7 @@ class PagesController < ApplicationController
     if params[:search].blank?
       redirect_to(root_path, alert: "Empty field!")
     else
+
     end
   end
 end

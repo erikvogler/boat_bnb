@@ -5,17 +5,16 @@ align-items: center;
 }
 
 #search_location {
-border-radius: 32px;
+border-radius: 32px 0 0 32px;
 width: 480px;
 padding: 24px;
-font-size: 20px;
+font-size: 24px;
 }
 
 .search-button {
-
-border-radius: 32px;
+border-radius: 0px 32px 32px 0px;
 background: #EA580C;
-padding: 16px 24px;
+padding: 12px 24px;
 border: none;
 color: white;
 font-size: 20px;
@@ -24,3 +23,7 @@ font-size: 20px;
 .search_location label {
     display:none;
   }
+
+.form-group {
+  margin-bottom: 0rem;
+}
