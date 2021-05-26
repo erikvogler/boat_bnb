@@ -1,4 +1,5 @@
 class BoatsController < ApplicationController
+
   def index
     @boats = Boat.all
   end
@@ -6,7 +7,7 @@ class BoatsController < ApplicationController
   def show
     @boat = Boat.find(params[:id])
     @booking = Booking.new
-    @user = current_user
+    @user = current_user || nil
   end
 
   def new
