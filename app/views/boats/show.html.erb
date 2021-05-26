@@ -17,7 +17,11 @@
     <div class="col-4">
       <div class="boat-show-card">
         <h5>Booking</h5>
-         <button type="button" class="btn btn-flat mt-2" data-toggle="modal" data-target="#add_booking_modal">Book</button>
+        <% if user_signed_in? %>
+           <button type="button" class="btn btn-flat mt-2" data-toggle="modal" data-target="#add_booking_modal">Book</button>
+        <% else %>
+        <p>You have to sign in to finish a booking.</p>
+        <% end %>
       </div>
       <div class="boat-show-card">
         <h3>Details</h3>
@@ -41,5 +45,7 @@
 <div class="d-flex justify-content-start">
   <i class="fas fa-angle-left"><%= link_to 'back to results', boats_path, class: 'btn btn-flat' %></i>
 </div>
-<%= render 'bookings/new', boat: @boat %>
+<% if user_signed_in? %>
+  <%= render 'bookings/new', boat: @boat %>
+<% end %>
 
