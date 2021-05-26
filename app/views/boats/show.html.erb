@@ -1,9 +1,44 @@
-<% @boats.each do |boat| %>
-  <% boat.pictures_url.each do |picture| %>
-     <%=image_tag 'picture'%>
-  <% end %>
-  <h2><%= boat.name %></h2>
-  <p><%= boat.location %></p>
-  <p><%= boat.description %></p>
-  <p><%= boat.price_per_night %></p>
-<% end %>
+<div class="map" style="background-image: url('<%= @boat.pictures_url %>')"></div>
+
+<div class="container margin-top-negative">
+  <div class="row">
+    <div class="col-8">
+      <div class="boat-show-card">
+        <h1><%= @boat.name %></h1>
+        <p class="boat-show-address"><%= @boat.location %></p>
+      </div>
+      <div class="boat-show-card">
+        <h3>A bit more about this boat</h3>
+        <p><%= @boat.description %></p>
+      </div>
+    </div>
+
+    <div class="col-4">
+      <div class="boat-show-card">
+        <h5>Booking</h5>
+         <button type="button" class="btn btn-flat mt-2" data-toggle="modal" data-target="#add_booking_modal">Book</button>
+      </div>
+      <div class="boat-show-card">
+        <h3>Details</h3>
+          <div class="d-flex">
+            <h6><i class="fas fa-euro-sign"><%= @boat.price_per_night %>/night</i></h6>
+          </div>
+      </div>
+      <div class="boat-show-card">
+          <h6 class="mb-3">Share</h6>
+
+          <div class="d-flex">
+            <i class="fab fa-facebook-f fa-2x mr-2"></i>
+            <i class="fab fa-twitter fa-2x mr-2"></i>
+            <i class="fab fa-instagram fa-2x mr-2"></i>
+            <i class="far fa-envelope fa-2x"></i>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="d-flex justify-content-start">
+  <i class="fas fa-angle-left"><%= link_to 'back to results', boats_path, class: 'btn btn-flat' %></i>
+</div>
+<%= render 'bookings/new', boat: @boat %>
+

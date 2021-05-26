@@ -1,4 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans:wght@300;400;700&display=swap');
+
 .card-trip {
+  width: 600px;
   overflow: hidden;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
@@ -11,13 +14,17 @@
 }
 
 .card-trip h2 {
-  font-size: 16px;
-  font-weight: bold;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  color: black;
+  font-weight: 700;
   margin: 0;
 }
 
 .card-trip p {
-  font-size: 12px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
   opacity: .7;
   margin: 0;
 }
