@@ -1,9 +1,19 @@
 <h2>Congratulations, your booking has been confirmed!</h2>
+<div class = "my-2">
 <% current_user.bookings.each do |booking| %>
-<strong>Start Date: <%= booking.start_date %></strong> | <strong>End Date: <%= booking.end_date %></strong>
-
-<%= booking.boat.name %>
-<p>Location: <%= booking.boat.location %></p>
-<%= booking.boat.description %>
-<%= image_tag booking.boat.pictures_url %>
-<% end %>
+  <div class="mb-4 d-flex justify-content-center" data-aos="zoom-in">
+    <div class="card-trip">
+      <%= image_tag booking.boat.pictures_url %>
+      <div class="card-trip-infos">
+        <div class="p-3 d-flex flex-column">
+          <h2 class="my-2">Boat name: <%= booking.boat.name %></h2>
+          <p>Location: <%= booking.boat.location %></p>
+          <p class="text-muted flex-grow-1"><%= booking.boat.description %></p>
+        </div>
+        <h2 class="card-trip-pricing flex-shrink-0"><i class="fas fa-euro-sign"><%= booking.boat.price_per_night %>/night</i></h2>
+        <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
