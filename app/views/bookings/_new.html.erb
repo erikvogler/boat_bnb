@@ -12,7 +12,7 @@
           <%= f.input :start_date, as: :date, html5: true, placeholder: 'Enter a start date' %>
           <%= f.input :end_date, as: :date, html5: true, placeholder: 'Enter an end date' %>
           <%= f.hidden_field :boat_id, value: @boat.id %>
-          <%= f.hidden_field :user_id, value: @user.id %>
+          <%= f.hidden_field :user_id, value: current_user.id %>
       </div>
       <div class="modal-footer">
           <%= f.submit 'Book', class: 'btn btn-flat'%>

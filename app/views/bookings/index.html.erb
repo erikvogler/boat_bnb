@@ -1,0 +1,9 @@
+<h2>Congratulations, your booking has been confirmed!</h2>
+<% current_user.bookings.each do |booking| %>
+<strong>Start Date: <%= booking.start_date %></strong> | <strong>End Date: <%= booking.end_date %></strong>
+
+<%= booking.boat.name %>
+<p>Location: <%= booking.boat.location %></p>
+<%= booking.boat.description %>
+<%= image_tag booking.boat.pictures_url %>
+<% end %>
