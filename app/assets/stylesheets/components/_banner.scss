@@ -1,0 +1,14 @@
+.banner {
+  height: 100vh;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.3) 75%), asset-url('banner.jpg');
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    color: white;
+    font-size: 72px;
+    font-family: 'Libre Baskerville', serif;
+  }
+}
