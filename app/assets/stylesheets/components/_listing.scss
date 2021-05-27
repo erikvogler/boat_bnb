@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans:wght@300;400;700&display=swap');
+
+
+.form-pic-wrapper{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.listing-card{
+  padding: 24px;
+  font-family: 'Open-Sans', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.list-pic img{
+  width:100%;
+  height: 450px;
+  object-fit: cover;
+}
+@media (max-width: 950px) {
+.list-pic{
+  display:none;
+} }

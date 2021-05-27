@@ -1,5 +1,5 @@
-<div class="modal fade" id="add_booking_modal" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal fade" id="add_booking_modal" tabindex="-1" role="dialog"  aria-labelledby="add_booking_modal">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content" style="z-index:2000">
       <div class="modal-header">
         <h5 class="modal-title">Add a booking</h5>
@@ -9,9 +9,8 @@
       </div>
       <div class="modal-body">
         <%= simple_form_for [@boat, @booking] do |f| %>
-          <%= f.input :start_date, placeholder: 'Enter a start date' %>
-          <%= f.input :end_date, placeholder: 'Enter an end date' %>
-
+          <%= f.input :start_date, as: :string, required: false, input_html: {class: "datepicker"} %>
+          <%= f.input :end_date, as: :string, required: false, input_html: {class: "datepicker"} %>
       </div>
       <div class="modal-footer">
           <%= f.submit 'Book', class: 'btn btn-flat'%>
@@ -21,3 +20,14 @@
     </div>
   </div>
 </div>
+<!-- <script>
+
+$(document).ready(function() {
+
+    $('.open_modal').on('click',function () {
+        var idModal = $(this).data("modal")
+        $(idModal).modal('show');
+    }
+});
+
+</script> -->
