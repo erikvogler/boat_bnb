@@ -1,17 +1,5 @@
-<nav class="navbar fixed-top navbar-light bg-light">
-  <div class="container-fluid navbar-lewagon">
-    <%= link_to root_path, class: "navbar-brand" do %>
-      <%= image_tag "logo.png" %>
-    <% end %>
-    <% if user_signed_in? %>
-      <%= link_to 'sign out', destroy_user_session_path, method: :delete %>
-      <%= link_to 'sign in', destroy_user_session_path, method: :delete %>
-    <% else %>
-      <%= link_to 'sign in', destroy_user_session_path, method: :delete %>
-       <%= link_to 'sign up', destroy_user_session_path, method: :delete %>
-    <% end %>
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <%= link_to "#", class: "navbar-brand" do %>
+  <%= link_to root_path, class: "navbar-brand" do %>
     <%= image_tag "boatbnb-logo.png" %>
   <% end %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,6 +27,7 @@
             <%= link_to 'Login', new_user_session_path, class: "nav-link" %>
           </li>
         <% end %>
+      </li>
     </ul>
   </div>
 </div>
