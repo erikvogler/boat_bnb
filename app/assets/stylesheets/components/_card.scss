@@ -1,9 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans:wght@300;400;700&display=swap');
-
+h1, h2, h3, h4, h5, h6{
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+}
 .card-trip {
   width: 600px;
   overflow: hidden;
-  background: white;
+  background: #f7f9fa;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 
@@ -14,10 +17,8 @@
 }
 
 .card-trip h2 {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 18px;
+  font-size: 20px;
   color: black;
-  font-weight: 700;
   margin: 0;
 }
 
@@ -43,4 +44,18 @@
   right: 16px;
   top: -20px;
   width: 40px;
+}
+
+.card-trip-infos .card-trip-pricing{
+  color: #455960;
+  font-family: 'Monteserrat', sans-serif;
+  font-size: 15px;
+  font-weight: lighter;
+  position: absolute;
+  right: 15px;
+  top: 30px;
+}
+
+.orange-bar{
+  color: #EA580B;
 }

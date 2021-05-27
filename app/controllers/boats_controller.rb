@@ -15,7 +15,6 @@ class BoatsController < ApplicationController
   end
 
   def create
-    @user = current_user
   end
 
   def edit

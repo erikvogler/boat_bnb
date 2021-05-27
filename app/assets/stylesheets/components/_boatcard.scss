@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans:wght@300;400;700&display=swap');
 
-h1, h2, h3, h4, h5, h6{
+h1, h2, h3, h5, h4, h6{
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
+  color: black;
 }
+
 p{
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
@@ -12,7 +14,7 @@ p{
   width: 100%;
   position: relative;
   margin: .5rem 0 1rem 0;
-  background-color: #fff;
+  background-color: #e8e9ed;
   border-radius: 2px;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
 }
@@ -47,6 +49,14 @@ p{
   margin-bottom: 20px;
   box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
   border-radius: 3px;
+  .fab, .far{
+    color: #EA580B;
+    font-size: 3vw;
+  }
+  .fa-euro-sign{
+    color: #455960;
+    font-size: 2vw;
+  }
 }
 
 .map {
@@ -63,5 +73,31 @@ p{
 .boat-show-address {
   font-weight: 300;
   font-size: 20px;
-  color: #333;
+  color: #EA580B;
+  position: relative;
 }
+
+.boat-pricing{
+  color: #455960;
+  font-size: 1.7vw;
+}
+.btn-orange{
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  color:white;
+  letter-spacing: 2px;
+  position: absolute;
+  right: 35px;
+  bottom: 45px;
+  padding: 7px 18px;
+  border-radius: 7px;
+  background-color: #EA580B;
+  outline:none;
+  border-style: none;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  &:hover{
+  text-decoration: none;
+  color:white
+  }
+}
+.btn-orange:hover, .btn-orange:active, .btn-orange:focus { outline: none; border-style: none; }
