@@ -1,9 +1,14 @@
 <div class="banner">
     <div>
       <h1>Find your favourite boat!</h1>
-      <%= simple_form_for :search, url: boats_path, method: :get do |f| %>
-        <%= f.input :location, class: "search-input" %>
-        <%= f.submit "Find", class: "search-button" %>
+
+      <%= form_tag boats_path, method: :get do %>
+        <%= text_field_tag :query,
+          params[:query],
+          class: "search-input",
+          placeholder: "Find a boat!"
+        %>
+        <%= submit_tag "Find", class: "search-button" %>
       <% end %>
     </div>
 </div>
