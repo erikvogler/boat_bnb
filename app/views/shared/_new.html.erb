@@ -1,33 +1,33 @@
-<div class="modal fade" id="add_booking_modal" tabindex="-1" role="dialog"  aria-labelledby="add_booking_modal">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content" style="z-index:2000">
+<div class="modal fade" id="add_booking_modal" tabindex="-1" role="dialog"  aria-labelledby="add_booking_modalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Add a booking</h5>
+        <h5 class="modal-title" id="add_booking_modalLabel">Add a booking</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <%= simple_form_for [@boat, @booking] do |f| %>
+        <%= simple_form_for [@boat, @booking], remote: true do |f| %>
           <%= f.input :start_date, as: :string, required: false, input_html: {class: "datepicker"} %>
           <%= f.input :end_date, as: :string, required: false, input_html: {class: "datepicker"} %>
       </div>
       <div class="modal-footer">
-          <%= f.submit 'Book', class: 'btn btn-flat'%>
+          <%= f.button :submit, class: 'btn btn-flat'%>
         <% end %>
         <button type="button" class="btn btn-cancel" data-dismiss="modal">Back</button>
       </div>
     </div>
   </div>
 </div>
-<!-- <script>
 
-$(document).ready(function() {
-
-    $('.open_modal').on('click',function () {
-        var idModal = $(this).data("modal")
-        $(idModal).modal('show');
-    }
-});
-
-</script> -->
+<script>
+$('#add_booking_modal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var recipient = <%= link_to boat_bookings_path(@boat) %> // Extract info from data-* attributes
+  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+  var modal = $(this)
+  modal.find('.modal-body input').val(recipient)
+})
+</script>

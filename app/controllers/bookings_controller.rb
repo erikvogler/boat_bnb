@@ -9,25 +9,17 @@ class BookingsController < ApplicationController
   end
 
   def create
+    raise
     @booking = Booking.new(list_params)
     @booking.boat = @boat
     @booking.user_id = current_user.id
     if @booking.save
+      raise
       redirect_to boat_bookings_path
     else
+      raise
       render 'shared/new'
     end
-    # respond_to do |format|
-    #   if @booking.save
-    #     format.html { redirect_to boat_bookings_path, notice: 'Booking was successfully created.' }
-    #     format.json { render action: 'show', status: :created, location: @booking }
-    #     format.js   { render action: 'show', status: :created, location: @booking }
-    #   else
-    #     format.html { render action: 'new' }
-    #     format.json { render json: @booking.errors, status: :unprocessable_entity }
-    #     format.js   { render json: @booking.errors, status: :unprocessable_entity }
-    #   end
-    # end
   end
 
   private
