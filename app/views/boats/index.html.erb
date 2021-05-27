@@ -2,7 +2,7 @@
   <%= link_to 'back to homepage', root_path, class: 'btn btn-flat' %>
 </div>
 <div class="container">
-  <h1 class="p-5 mb-5 d-flex justify-content-center">Boats to rent in Berlin</h1>
+  <h1 class="p-5 mb-5 d-flex justify-content-center">Boats to rent</h1>
 <div class = "my-2">
   <% @boats.each do |boat| %>
   <%= link_to boat_path(boat), class:'text-decoration-none' do %>
@@ -15,7 +15,7 @@
           <p class="text-muted"><%= boat.description %></p>
         </div>
         <small class="card-trip-pricing flex-shrink-0 mb-5"><i class="fas fa-euro-sign"><%= boat.price_per_night %></i></small>
-        <%=image_tag boat.user.profile_pic, class: "card-trip-user avatar-bordered" %>
+       <%= image_tag boat.user.profile_pic.nil? ? 'https://res.cloudinary.com/dr8v0dbbd/image/upload/v1622108206/users/woman2.jpg' : boat.user.profile_pic, class: 'card-trip-user avatar-bordered' %>
       </div>
     </div>
   </div>
