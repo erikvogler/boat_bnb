@@ -15,7 +15,7 @@ class BookingsController < ApplicationController
     if @booking.save
       redirect_to boat_bookings_path
     else
-      render 'new'
+      render 'shared/new'
     end
     # respond_to do |format|
     #   if @booking.save

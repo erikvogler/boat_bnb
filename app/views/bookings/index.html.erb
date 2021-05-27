@@ -11,7 +11,34 @@
 
 
   <div class="tab-content">
-    <div class="tab-pane active" id="boat" role="tabpanel" aria-labelledby="boat-tab">...</div>
+    <div class="tab-pane active" id="boat" role="tabpanel" aria-labelledby="boat-tab">
+      <div class="container">
+        <div class="mt-3">
+          <span class="mb-3 d-block"><small><em class="text-muted"><%= "You don't have any boats yet!" if current_user.boats.empty? %></em></small></span>
+          <%= link_to 'Create a boat listing', new_boat_path, class: "new-boat-button" %>
+        </div>
+        <div class = "my-2">
+          <% current_user.boats.each do |boat| %>
+          <div class="mb-4 d-flex justify-content-start" data-aos="zoom-in">
+            <div class="card-trip">
+              <%= image_tag boat.pictures_url %>
+              <div class="card-trip-infos">
+                <div class="p-3 d-flex flex-column">
+                  <h2 class="my-2">Boat name: <%=boat.name %></h2>
+                  <p class="mb-2">Location: <i class="fas fa-map-marker-alt orange-bar"> <%= boat.location %></i></p>
+                  <p class="text-muted flex-grow-1"><%= boat.description %></p>
+                </div>
+                <p class="card-trip-pricing flex-shrink-0"><i class="fas fa-euro-sign"></i><%= boat.price_per_night %>/night</p>
+                <%= image_tag current_user.profile_pic, class: "card-trip-user avatar-bordered" %>
+              </div>
+            </div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+
     <div class="tab-pane" id="user" role="tabpanel" aria-labelledby="user-tab">
       <div class="container">
         <div class="d-flex justify-content-between my-3">
