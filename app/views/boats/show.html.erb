@@ -1,4 +1,3 @@
-<%= link_to 'sign out', destroy_user_session_path, method: :delete %>
 <div class="map" style="background-image: url('<%= @boat.pictures_url %>')"></div>
 
 <div class="container margin-top-negative">
@@ -44,5 +43,5 @@
   <i class="fas fa-angle-left"><%= link_to 'back to results', boats_path, class: 'btn btn-flat' %></i>
 </div>
 <% if user_signed_in? %>
-  <%= render 'bookings/new', boat: @boat %>
+  <%= render 'shared/new'%>
 <% end %>
