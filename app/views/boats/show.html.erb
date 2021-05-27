@@ -5,34 +5,36 @@
   <div class="row">
     <div class="col-8">
       <div class="boat-show-card">
-        <h1><%= @boat.name %></h1>
-        <p class="boat-show-address"><%= @boat.location %></p>
+        <h1 class="mb-5"><%= @boat.name %></h1>
+        <p class="text-muted"><%= @boat.description %></p>
       </div>
       <div class="boat-show-card">
-        <h3>A bit more about this boat</h3>
-        <p><%= @boat.description %></p>
+        <p class="boat-show-address my-2"><i class="fas fa-map-marker-alt "> <%= @boat.location %></i></p>
+        <div>
+          <% if user_signed_in? %>
+            <button type="button" class="btn-orange mt-2" data-toggle="modal" data-target="#add_booking_modal">Book</button>
+          <% else %>
+            <%= link_to 'Log in to book', new_user_session_path, method: :get, class: "btn-orange" %>
+          <% end %>
+        </div>
       </div>
     </div>
 
     <div class="col-4">
       <div class="boat-show-card">
-        <h5>Booking</h5>
-         <button type="button" class="btn btn-flat mt-2" data-toggle="modal" data-target="#add_booking_modal">Book</button>
-      </div>
-      <div class="boat-show-card">
-        <h3>Details</h3>
+        <h5 class="mb-2">Price</h5>
           <div class="d-flex">
-            <h6><i class="fas fa-euro-sign"><%= @boat.price_per_night %>/night</i></h6>
+            <h4 class="boat-pricing"><i class="fas fa-euro-sign"></i> <%= @boat.price_per_night %>/night</h4>
           </div>
       </div>
       <div class="boat-show-card">
-          <h6 class="mb-3">Share</h6>
+          <h5 class="mb-3">Share</h5>
 
-          <div class="d-flex">
-            <i class="fab fa-facebook-f fa-2x mr-2"></i>
-            <i class="fab fa-twitter fa-2x mr-2"></i>
-            <i class="fab fa-instagram fa-2x mr-2"></i>
-            <i class="far fa-envelope fa-2x"></i>
+          <div class="d-flex justify-content-between">
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-instagram "></i>
+            <i class="far fa-envelope"></i>
           </div>
       </div>
     </div>
@@ -41,5 +43,6 @@
 <div class="d-flex justify-content-start">
   <i class="fas fa-angle-left"><%= link_to 'back to results', boats_path, class: 'btn btn-flat' %></i>
 </div>
-<%= render 'bookings/new', boat: @boat %>
-
+<% if user_signed_in? %>
+  <%= render 'bookings/new', boat: @boat %>
+<% end %>
