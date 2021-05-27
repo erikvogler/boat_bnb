@@ -1,0 +1,13 @@
+<nav class="navbar fixed-top navbar-light bg-light">
+  <div class="container-fluid navbar-lewagon">
+    <%= link_to root_path, class: "navbar-brand" do %>
+      <%= image_tag "logo.png" %>
+    <% end %>
+    <%= link_to 'sign out', destroy_user_session_path, method: :delete %>
+    <%= link_to 'sign in', destroy_user_session_path, method: :delete %>
+  </div>
+</nav>
+app/assets/images/logo.png
+
+
+
