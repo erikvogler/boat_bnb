@@ -1,6 +1,7 @@
 class BoatsController < ApplicationController
   # skip_before_action :authenticate_user!, only: [:index, :show]
 
+
   def index
     @boats = Boat.all
   end
@@ -28,4 +29,9 @@ class BoatsController < ApplicationController
 
   end
 
+ private
+
+ def set_user
+   @user = User.find(params[:user_id])
+ end
 end

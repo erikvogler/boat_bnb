@@ -3,8 +3,13 @@
     <%= link_to root_path, class: "navbar-brand" do %>
       <%= image_tag "logo.png" %>
     <% end %>
-    <%= link_to 'sign out', destroy_user_session_path, method: :delete %>
-    <%= link_to 'sign in', destroy_user_session_path, method: :delete %>
+    <% if user_signed_in? %>
+      <%= link_to 'sign out', destroy_user_session_path, method: :delete %>
+      <%= link_to 'sign in', destroy_user_session_path, method: :delete %>
+    <% else %>
+      <%= link_to 'sign in', destroy_user_session_path, method: :delete %>
+       <%= link_to 'sign up', destroy_user_session_path, method: :delete %>
+    <% end %>
   </div>
 </nav>
 app/assets/images/logo.png
