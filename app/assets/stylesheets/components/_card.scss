@@ -8,6 +8,8 @@ h1, h2, h3, h4, h5, h6{
   overflow: hidden;
   background: #f7f9fa;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 
 .card-trip > img {
@@ -25,7 +27,7 @@ h1, h2, h3, h4, h5, h6{
 .card-trip p {
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 11px;
   opacity: .7;
   margin: 0;
 }
@@ -35,14 +37,14 @@ h1, h2, h3, h4, h5, h6{
   padding: 16px;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: flex-start;
   position: relative;
 }
 
 .card-trip-infos .card-trip-user {
   position: absolute;
-  right: 16px;
-  top: -20px;
+  right: 550px;
+  top: 10px;
   width: 40px;
   height: 40px;
   object-fit: cover;
@@ -55,7 +57,7 @@ h1, h2, h3, h4, h5, h6{
   font-weight: lighter;
   position: absolute;
   right: 15px;
-  top: 30px;
+  top: 175px;
 }
 
 .orange-bar{
