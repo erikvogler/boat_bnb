@@ -40,6 +40,9 @@
                       required: true,
                       input_html: { autocomplete: "new-password" } %>
         </div>
+        <div class="form-group col-12 mb-2">
+          <%= f.input :profile_pic, label: "profile picture", error: 'A profile picture is mandatory, please upload at least one', hint: 'Upload a picture', class: "form-control-file" %>
+        </div>
         <div class="form-actions">
           <%= f.button :submit, "Sign up", class:"new-boat-button" %>
         </div>
