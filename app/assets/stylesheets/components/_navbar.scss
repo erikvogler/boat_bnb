@@ -1,3 +1,6 @@
+.navbar{
+  padding: 0;
+}
 .navbar-lewagon {
   justify-content: space-between;
   background: white;
@@ -9,10 +12,11 @@
 
 .navbar-lewagon .navbar-brand img {
   width: 40px;
+  margin-left: 20px;
 }
 
 .user-logo {
   display: flex;
-justify-content: center;
-align-items: center;
+  justify-content: center;
+  align-items: center;
 }

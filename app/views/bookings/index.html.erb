@@ -27,21 +27,44 @@
           <% current_user.boats.each do |boat| %>
           <div class="mb-4 d-flex justify-content-start" data-aos="zoom-in">
             <div class="card-trip">
-              <%= image_tag boat.pictures_url %>
-              <div class="card-trip-infos">
-                <div class="p-3 d-flex flex-column">
-                  <h2 class="my-2">Boat name: <%=boat.name %></h2>
-                  <p class="mb-2">Location: <i class="fas fa-map-marker-alt orange-bar"> <%= boat.location %></i></p>
-                  <p class="text-muted flex-grow-1"><%= boat.description %></p>
-                </div>
-                <p class="card-trip-pricing flex-shrink-0"><i class="fas fa-euro-sign"></i><%= boat.price_per_night %>/night</p>
-                <%= image_tag current_user.profile_pic, class: "card-trip-user avatar-bordered" %>
-              </div>
-            </div>
+              <% @bookings.each do |booking| %>
+              <% if booking.status == "Pending host validation" %>
+                 <%= image_tag boat.pictures_url %>
+                 <div class="card-trip-infos">
+                   <div class="p-3 d-flex flex-column">
+                      <h3> <%= booking.user.first_name %> <%= booking.user.last_name %> wants to rent your boat! </h3>
+                      <h2 class="my-2">Boat name: <%=boat.name %></h2>
+                      <p class="mb-2">Location: <i class="fas fa-map-marker-alt orange-bar"> <%= boat.location %></i></p>
+                      <p class="text-muted flex-grow-1"><%= boat.description %></p>
+                   </div>
+                   <ul class="list-inline product-controls hidden-sm hidden-xs">
+                      <li><%= link_to "Accept ", boat_booking_path(boat, booking.status = "Confirmed"), method: :patch, remote: true, class: "btn btn-success"%></li>
+                      <li><%= link_to "Reject", boat_booking_path(boat, booking.status = "Canceled"), method: :patch, remote: true, class: "btn btn-danger"%></li>
+                   </ul>
+                   <p class="card-trip-pricing flex-shrink-0"><i class="fas fa-euro-sign"></i><%= booking.total_value %>/trip</p>
+                   <%= image_tag current_user.profile_pic, class: "card-trip-user avatar-bordered" %>
+                 </div>
+              <% elsif booking.status == "Confirmed" %>
+                <%= image_tag boat.pictures_url %>
+                 <div class="card-trip-infos">
+                   <div class="p-3 d-flex flex-column">
+                      <h3> <%= booking.user.first_name %> <%= booking.user.last_name %> is renting your boat ! </h3>
+                      <h2 class="my-2">Boat name: <%=boat.name %></h2>
+                      <p class="mb-2">Location: <i class="fas fa-map-marker-alt orange-bar"> <%= boat.location %></i></p>
+                      <p class="text-muted flex-grow-1"><%= boat.description %></p>
+                   </div>
+                   <p> Prepare your boat !</p>
+                   <p> Status: <i class="fa fa-check-square-o icon-validate" aria-hidden="true"></i></p>
+                   <p class="card-trip-pricing flex-shrink-0"><i class="fas fa-euro-sign"></i><%= boat.total_value %>/trip</p>
+                   <%= image_tag current_user.profile_pic, class: "card-trip-user avatar-bordered" %>
+                 </div>
+                <% end %>
+                <% end %>
+               </div>
+             </div>
+            <% end %>
           </div>
-          <% end %>
         </div>
-      </div>
 
       <div class="tab-pane" id="user" role="tabpanel" aria-labelledby="user-tab">
         <div class="d-flex justify-content-between my-3">
@@ -51,17 +74,49 @@
           <% current_user.bookings.each do |booking| %>
           <div class="mb-4 d-flex justify-content-start" data-aos="zoom-in">
             <div class="card-trip">
-              <%= image_tag booking.boat.pictures_url %>
-              <div class="card-trip-infos">
-                <div class="p-3 d-flex flex-column">
-                  <h2 class="my-2">Boat name: <%= booking.boat.name %></h2>
-                  <h6 class="text-muted">Start date: <%= booking.start_date %> <span class="orange-bar">|</span> End date: <%= booking.end_date %></h6>
-                  <p class="mb-2">Location: <i class="fas fa-map-marker-alt orange-bar"> <%= booking.boat.location %></i></p>
-                  <p class="text-muted flex-grow-1"><%= booking.boat.description %></p>
-                </div>
-                <p class="card-trip-pricing flex-shrink-0"><i class="fas fa-euro-sign"></i><%= booking.boat.price_per_night %>/night</p>
-                <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
-              </div>
+                <% if booking.status == "Pending host validation" %>
+                  <%= image_tag booking.boat.pictures_url %>
+                  <div class="card-trip-infos">
+                    <div class="p-3 d-flex flex-column">
+                      <h3> Your request is pending. </h3>
+                      <p> Status: <i class="fas fa-circle pending" aria-hidden="true"></i></p>
+                      <h2 class="my-2">Boat name: <%= booking.boat.name %></h2>
+                      <h6 class="text-muted">Start date: <%= booking.start_date %> <span class="orange-bar">|</span> End date: <%= booking.end_date %></h6>
+                      <p class="mb-2">Location: <i class="fas fa-map-marker-alt orange-bar"> <%= booking.boat.location %></i></p>
+                      <p class="text-muted flex-grow-1"><%= booking.boat.description %></p>
+                   </div>
+                   <p class="card-trip-pricing flex-shrink-0"><i class="fas fa-euro-sign"></i><%= booking.total_value %>/trip</p>
+                   <%= image_tag booking.boat.user.profile_pic, class: "card-trip-user avatar-bordered" %>
+                 </div>
+                <%elsif booking.status == "Confirmed" %>
+                  <%= image_tag booking.boat.pictures_url %>
+                  <div class="card-trip-infos">
+                    <div class="p-3 d-flex flex-column">
+                      <h3> <%= booking.boat.user.first_name %> accepted your request! </h3>
+                      <p> Status: <i class="fas fa-circle confirmed" aria-hidden="true"></i></p>
+                      <h2 class="my-2">Boat name: <%= booking.boat.name %></h2>
+                      <h6 class="text-muted">Start date: <%= booking.start_date %> <span class="orange-bar">|</span> End date: <%= booking.end_date %></h6>
+                      <p class="mb-2">Location: <i class="fas fa-map-marker-alt orange-bar"> <%= booking.boat.location %></i></p>
+                      <p class="text-muted flex-grow-1"><%= booking.boat.description %></p>
+                   </div>
+                   <p class="card-trip-pricing flex-shrink-0"><i class="fas fa-euro-sign"></i><%= booking.total_value %>/trip</p>
+                   <%= image_tag booking.boat.user.profile_pic, class: "card-trip-user avatar-bordered" %>
+                 </div>
+                <%elsif booking.status == "Canceled" %>
+                  <%= image_tag booking.boat.pictures_url %>
+                  <div class="card-trip-infos">
+                    <div class="p-3 d-flex flex-column">
+                      <h3> Sorry, <%= booking.boat.user.first_name %> rejected your request! </h3>
+                      <p> Status: <i class="fas fa-circle rejected" aria-hidden="true"></i></p>
+                      <h2 class="my-2">Boat name: <%= booking.boat.name %></h2>
+                      <h6 class="text-muted">Start date: <%= booking.start_date %> <span class="orange-bar">|</span> End date: <%= booking.end_date %></h6>
+                      <p class="mb-2">Location: <i class="fas fa-map-marker-alt orange-bar"> <%= booking.boat.location %></i></p>
+                      <p class="text-muted flex-grow-1"><%= booking.boat.description %></p>
+                   </div>
+                   <p class="card-trip-pricing flex-shrink-0"><i class="fas fa-euro-sign"></i><%= booking.total_value %>/trip</p>
+                   <%= image_tag booking.boat.user.profile_pic, class: "card-trip-user avatar-bordered" %>
+                 </div>
+                <% end %>
             </div>
           </div>
           <% end %>
