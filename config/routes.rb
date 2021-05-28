@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   # For details on the DSL available within th
   resources :boats, only: [:index, :show, :new, :create] do
-    resources :bookings, only: [:index, :new, :create]
+    resources :bookings, only: [:index, :new, :create, :edit, :update]
   end
 
 end
