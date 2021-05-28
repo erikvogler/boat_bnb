@@ -1,19 +1,19 @@
 <div class="modal fade" id="add_booking_modal" tabindex="-1" role="dialog"  aria-labelledby="add_booking_modal">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content" style="z-index:2000">
+    <div class="modal-content" >
       <div class="modal-header">
         <h5 class="modal-title">Add a booking</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <%= simple_form_for [@boat, @booking], remote: true do |f| %>
       <div class="modal-body">
+        <%= simple_form_for [@boat, @booking] do |f| %>
           <%= f.input :start_date, as: :string, required: false, input_html: {class: "datepicker"} %>
           <%= f.input :end_date, as: :string, required: false, input_html: {class: "datepicker"} %>
       </div>
       <div class="modal-footer">
-          <%= f.submit  class: 'btn btn-flat'%>
+          <%= f.submit class: 'btn btn-flat'%>
         <% end %>
         <button type="button" class="btn btn-cancel" data-dismiss="modal">Back</button>
       </div>

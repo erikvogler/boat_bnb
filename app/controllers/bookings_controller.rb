@@ -1,6 +1,5 @@
 class BookingsController < ApplicationController
   before_action :set_boat, only: [:index, :new, :create]
-  before_action :set_user, only: [:index]
 
   def index
     @bookings = Booking.where( boat_id: @boat)
@@ -22,30 +21,25 @@ class BookingsController < ApplicationController
     else
       render 'shared/new'
     end
-    # respond_to do |format|
-    #   if @booking.save
-    #     format.html { redirect_to boat_bookings_path, notice: 'Booking was successfully created.' }
-    #     format.json { render action: 'show', status: :created, location: @booking }
-    #     format.js   { render action: 'show', status: :created, location: @booking }
-    #   else
-    #     format.html { render action: 'new' }
-    #     format.json { render json: @booking.errors, status: :unprocessable_entity }
-    #     format.js   { render json: @booking.errors, status: :unprocessable_entity }
-    #   end
-    # end
   end
+
   def edit
     @booking = Booking.find(params[:id])
   end
+
   def update
     @booking = Booking.find(params[:id])
-    @booking.update(list_params)
+    @booking.update(boat_params)
     redirect_to boat_bookings_path(@booking.boat)
   end
 
   private
 
   def list_params
+    params.require(:booking).permit(:start_date, :end_date, :status, :total_value)
+  end
+
+  def boat_params
     params.permit(:start_date, :end_date, :status, :total_value)
   end
   def booking_params
@@ -54,8 +48,5 @@ class BookingsController < ApplicationController
 
   def set_boat
     @boat = Boat.find(params[:boat_id])
-  end
-  def set_user
-    # @user = User.find(params[:user_id])
   end
 end
