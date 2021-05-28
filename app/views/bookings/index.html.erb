@@ -1,7 +1,7 @@
 <h2 class="d-flex justify-content-center mb-3"><%= pluralize(current_user.first_name,"'s boat booking") %></h2>
 <div class="profile-dash">
   <div class="profile">
-    <%= image_tag current_user.profile_pic, class: "avatar-large"%>
+    <%= image_tag current_user.profile_pic.nil? ? 'https://res.cloudinary.com/dr8v0dbbd/image/upload/v1622108206/users/woman2.jpg' : current_user.profile_pic, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
     <h4> <%= current_user.first_name %> <%= current_user.last_name %></h4>
     <h6> <%= current_user.address %></h6>
     <%= link_to 'Create a boat listing', new_boat_path, class: "new-boat-button" %>
