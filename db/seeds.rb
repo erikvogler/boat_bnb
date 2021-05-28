@@ -24,7 +24,7 @@ user = User.create(first_name: 'Alexandra',
             profile_pic: "https://res.cloudinary.com/dr8v0dbbd/image/upload/v1622108360/users/woman0.jpg")
 puts "Created user number #{user.id}."
 boat = Boat.create( name: 'Titanic',
-             description: 'This elven noble\'s yacht has a bulky hull with lateen rigged canvas sails. The ship\'s captain is a female elf lady named Ainid,
+             description: 'This elven noble\'s yacht has a bulky hull with lateen rigged canvas sails. The ship\'s captain is a female elf lady named Ainid,',
              location: 'Leopoldstraße 75, Berlin',
              price_per_night: rand(50..500),
              user_id: user.id,
@@ -32,7 +32,7 @@ boat = Boat.create( name: 'Titanic',
 )
 puts "Created boat number #{boat.id}."
 boat = Boat.create( name: 'The Peaceful Destiny',
-             description: 'This explorer\'s ship has a bulky hull with three rows of long oars worked by ogre slaves. The ship\'s captain is a female wizard named Wulfwe.
+             description: 'This explorer\'s ship has a bulky hull with three rows of long oars worked by ogre slaves. The ship\'s captain is a female wizard named Wulfwe.',
              price_per_night: rand(50..500),
              user_id: user.id,
              pictures_url: "https://res.cloudinary.com/dr8v0dbbd/image/upload/v1622113238/boats/photo-1575893240675-17e719ffa7c5_vkpqcj.jpg"
@@ -61,7 +61,7 @@ boat = Boat.create( name: 'The Wolf',
 )
 puts "Created boat number #{boat.id}."
 boat = Boat.create( name: 'The Fortress',
-             description: 'This dwarven warship has a battle-scarred hull with a tall aftcastle. The ship\'s captain is a male dwarf named Mahor, and it is crewed by grim dwarven axemen.
+             description: 'This dwarven warship has a battle-scarred hull with a tall aftcastle. The ship\'s captain is a male dwarf named Mahor, and it is crewed by grim dwarven axemen.',
              location: 'Brandenburgische Straße 90, Berlin',
              price_per_night: rand(50..500),
              user_id: user.id,
@@ -69,7 +69,7 @@ boat = Boat.create( name: 'The Fortress',
 )
 puts "Created boat number #{boat.id}."
 boat = Boat.create( name: 'The Silver Cutter',
-             description:'This noble\'s yacht has a stout hull with a golden aftcastle, and is held aloft by a pair of magical giant feathered wings. The ship\'s captain is a male aristocrat named Edmugh Sparry
+             description:'This noble\'s yacht has a stout hull with a golden aftcastle, and is held aloft by a pair of magical giant feathered wings. The ship\'s captain is a male aristocrat named Edmugh Sparry.',
              location: 'Leopoldstraße 44, Berlin',
              price_per_night: rand(50..500),
              user_id: user.id,
