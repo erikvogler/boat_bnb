@@ -1,5 +1,5 @@
+<%= simple_form_for @boat do |f|%>
 <div class="form-pic-wrapper">
-  <%= simple_form_for @boat do |f|%>
   <div class = "listing-card">
     <div class="form-row">
       <div class="form-group col-12 mb-2">
@@ -14,8 +14,8 @@
       <div class="form-group col-md-6 mb-2">
         <%= f.input :price_per_night, label: 'Price/night', error: 'A price per night is mandatory, please specify one', hint: 'Enter a number.', class: "form-control" %>
       </div>
-      <div class="form-group col-md-6">
-        <%= f.file_field :pictures_url, label: "Boat images", error: 'Pictures of your boat are mandatory, please upload at least one', hint: 'Upload pictures of your boat.(minimum 1)', class: "form-control-file" %>
+      <div class="form-group col-md-12 mb-2">
+        <%= f.input :pictures_url, label: "Boat images", error: 'Pictures of your boat are mandatory, please upload at least one', hint: 'Upload pictures of your boat.(minimum 1)', class: "form-control-file" %>
       </div>
       <div class="form-group col-md-6">
         <%= f.button :submit, 'Create your boat listing', class:"new-boat-button"%>
