@@ -19,6 +19,13 @@ class BoatsController < ApplicationController
   end
 
   def create
+    @boat = Boat.new(boat_params)
+    @boat.user_id = current_user.id
+    if @boat.save
+      redirect_to boat_bookings_path(@boat)
+    else
+      render 'new'
+    end
   end
 
   def edit
@@ -33,6 +40,10 @@ class BoatsController < ApplicationController
   end
 
  private
+
+ def boat_params
+    params.require(:boat).permit(:name, :description, :location, :price_per_night, :pictures_url)
+ end
 
  def set_user
    @user = User.find(params[:user_id])

@@ -10,10 +10,13 @@
   <div class="dashboad">
     <ul class="nav nav-tabs" id="boatsTab" role="tablist">
       <li class="nav-item">
-        <a class="nav-link active" id="boat-bookings" data-toggle="tab" href="#boat" role="tab" aria-controls="boat" aria-selected="true">Your boats</a>
+        <a class="nav-link active" id="boat-bookings" data-toggle="tab" href="#boat" role="tab" aria-controls="boat" aria-selected="true">Your boat bookings</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" id="user-bookings" data-toggle="tab" href="#user" role="tab" aria-controls="user" aria-selected="false">Your boat bookings</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="user-boats" data-toggle="tab" href="#user-boat" role="tab" aria-controls="user-boat" aria-selected="false">Your boats</a>
       </li>
     </ul>
 
@@ -21,51 +24,47 @@
     <div class="tab-content">
       <div class="tab-pane active" id="boat" role="tabpanel" aria-labelledby="boat-tab">
         <div class="mt-3">
-          <span class="mb-3 d-block"><small><em class="text-muted"><%= "You don't have any boats yet!" if current_user.boats.empty? %></em></small></span>
+          <span class="mb-3 d-block"><small><em class="text-muted"><%= "You don't have any boat bookings yet!" if current_user.boats.empty? %></em></small></span>
         </div>
         <div class = "my-2">
-          <% current_user.boats.each do |boat| %>
+          <% @bookings.each do |booking| %>
           <div class="mb-4 d-flex justify-content-start" data-aos="zoom-in">
             <div class="card-trip">
-              <% @bookings.each do |booking| %>
               <% if booking.status == "Pending host validation" %>
-                 <%= image_tag boat.pictures_url %>
+                 <%= image_tag booking.boat.pictures_url %>
                  <div class="card-trip-infos">
-                   <div class="p-3 d-flex flex-column">
-                      <h3> <%= booking.user.first_name %> <%= booking.user.last_name %> wants to rent your boat! </h3>
-                      <h2 class="my-2">Boat name: <%=boat.name %></h2>
-                      <p class="mb-2">Location: <i class="fas fa-map-marker-alt orange-bar"> <%= boat.location %></i></p>
-                      <p class="text-muted flex-grow-1"><%= boat.description %></p>
+                   <div class="d-flex flex-column">
+                      <h2 class="my-2">Boat name: <%=booking.boat.name %></h2>
+                      <p class="mb-2">Location: <i class="fas fa-map-marker-alt orange-bar"> <%= booking.boat.location %></i></p>
+                      <p class="text-muted flex-grow-1"><%= booking.boat.description %></p>
+                      <h6 class="my-3"> <%= booking.user.first_name %> <%= booking.user.last_name %> wants to rent your boat! </h6>
+                      <ul class="d-flex">
+                        <li><%= link_to "Accept ", boat_booking_path(booking.boat, booking) + '?status=Confirmed', method: :patch, class: "mr-4 btn_accept"%></li>
+                        <li><%= link_to "Reject", boat_booking_path(booking.boat, booking) + '?status=Canceled', method: :patch, class: "btn_reject"%></li>
+                      </ul>
                    </div>
-                   <ul class="list-inline product-controls hidden-sm hidden-xs">
-                      <li><%= link_to "Accept ", boat_booking_path(boat, booking.status = "Confirmed"), method: :patch, remote: true, class: "btn btn-success"%></li>
-                      <li><%= link_to "Reject", boat_booking_path(boat, booking.status = "Canceled"), method: :patch, remote: true, class: "btn btn-danger"%></li>
-                   </ul>
                    <p class="card-trip-pricing flex-shrink-0"><i class="fas fa-euro-sign"></i><%= booking.total_value %>/trip</p>
                    <%= image_tag current_user.profile_pic, class: "card-trip-user avatar-bordered" %>
                  </div>
               <% elsif booking.status == "Confirmed" %>
-                <%= image_tag boat.pictures_url %>
+                <%= image_tag booking.boat.pictures_url %>
                  <div class="card-trip-infos">
                    <div class="p-3 d-flex flex-column">
-                      <h3> <%= booking.user.first_name %> <%= booking.user.last_name %> is renting your boat ! </h3>
-                      <h2 class="my-2">Boat name: <%=boat.name %></h2>
-                      <p class="mb-2">Location: <i class="fas fa-map-marker-alt orange-bar"> <%= boat.location %></i></p>
-                      <p class="text-muted flex-grow-1"><%= boat.description %></p>
+                      <h2 class="my-2">Boat name: <%=booking.boat.name %></h2>
+                      <p class="mb-2">Location: <i class="fas fa-map-marker-alt orange-bar"> <%= booking.boat.location %></i></p>
+                      <p class="text-muted flex-grow-1"><%= booking.boat.description %></p>
+                      <h6 class="my-3"> <%= booking.user.first_name %> <%= booking.user.last_name %> is renting your boat! </h6>
+                      <h6 class="confirmed"> Prepare your boat!</h6>
                    </div>
-                   <p> Prepare your boat !</p>
-                   <p> Status: <i class="fa fa-check-square-o icon-validate" aria-hidden="true"></i></p>
-                   <p class="card-trip-pricing flex-shrink-0"><i class="fas fa-euro-sign"></i><%= boat.total_value %>/trip</p>
+                   <p class="card-trip-pricing flex-shrink-0"><i class="fas fa-euro-sign"></i><%= booking.total_value %>/trip</p>
                    <%= image_tag current_user.profile_pic, class: "card-trip-user avatar-bordered" %>
                  </div>
-                <% end %>
-                <% end %>
-               </div>
-             </div>
-            <% end %>
+              <% end %>
+            </div>
           </div>
+          <% end %>
         </div>
-
+      </div>
       <div class="tab-pane" id="user" role="tabpanel" aria-labelledby="user-tab">
         <div class="d-flex justify-content-between my-3">
           <span class="mb-2 d-block"><small><em class="text-muted"><%= "You don't have any boat bookings yet!" if current_user.bookings.empty? %></em></small></span>
@@ -78,7 +77,7 @@
                   <%= image_tag booking.boat.pictures_url %>
                   <div class="card-trip-infos">
                     <div class="p-3 d-flex flex-column">
-                      <h3> Your request is pending. </h3>
+                      <h6> Your request is pending confirmation from <%= booking.boat.user.first_name %>. </h6>
                       <p> Status: <i class="fas fa-circle pending" aria-hidden="true"></i></p>
                       <h2 class="my-2">Boat name: <%= booking.boat.name %></h2>
                       <h6 class="text-muted">Start date: <%= booking.start_date %> <span class="orange-bar">|</span> End date: <%= booking.end_date %></h6>
@@ -92,7 +91,7 @@
                   <%= image_tag booking.boat.pictures_url %>
                   <div class="card-trip-infos">
                     <div class="p-3 d-flex flex-column">
-                      <h3> <%= booking.boat.user.first_name %> accepted your request! </h3>
+                      <h6> <%= booking.boat.user.first_name %> accepted your request! </h6>
                       <p> Status: <i class="fas fa-circle confirmed" aria-hidden="true"></i></p>
                       <h2 class="my-2">Boat name: <%= booking.boat.name %></h2>
                       <h6 class="text-muted">Start date: <%= booking.start_date %> <span class="orange-bar">|</span> End date: <%= booking.end_date %></h6>
@@ -106,17 +105,39 @@
                   <%= image_tag booking.boat.pictures_url %>
                   <div class="card-trip-infos">
                     <div class="p-3 d-flex flex-column">
-                      <h3> Sorry, <%= booking.boat.user.first_name %> rejected your request! </h3>
+                      <h6 class="rejected"> Sorry, <%= booking.boat.user.first_name %> rejected your request! </h6>
                       <p> Status: <i class="fas fa-circle rejected" aria-hidden="true"></i></p>
                       <h2 class="my-2">Boat name: <%= booking.boat.name %></h2>
                       <h6 class="text-muted">Start date: <%= booking.start_date %> <span class="orange-bar">|</span> End date: <%= booking.end_date %></h6>
                       <p class="mb-2">Location: <i class="fas fa-map-marker-alt orange-bar"> <%= booking.boat.location %></i></p>
                       <p class="text-muted flex-grow-1"><%= booking.boat.description %></p>
                    </div>
-                   <p class="card-trip-pricing flex-shrink-0"><i class="fas fa-euro-sign"></i><%= booking.total_value %>/trip</p>
                    <%= image_tag booking.boat.user.profile_pic, class: "card-trip-user avatar-bordered" %>
                  </div>
                 <% end %>
+            </div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="tab-pane" id="user-boat" role="tabpanel" aria-labelledby="userboat-tab">
+        <div class="mt-3">
+          <span class="mb-3 d-block"><small><em class="text-muted"><%= "You don't have any boats yet!" if current_user.boats.empty? %></em></small></span>
+        </div>
+        <div class = "my-2">
+          <% current_user.boats.each do |boat| %>
+          <div class="mb-4 d-flex justify-content-start" data-aos="zoom-in">
+            <div class="card-trip">
+                 <%= image_tag boat.pictures_url %>
+                 <div class="card-trip-infos">
+                   <div class="d-flex flex-column">
+                      <h2 class="my-2">Boat name: <%=boat.name %></h2>
+                      <p class="mb-2">Location: <i class="fas fa-map-marker-alt orange-bar"> <%= boat.location %></i></p>
+                      <p class="text-muted flex-grow-1"><%= boat.description %></p>
+                   </div>
+                   <p class="card-trip-pricing flex-shrink-0"><i class="fas fa-euro-sign"></i><%= boat.price_per_night %>/night</p>
+                   <%= image_tag current_user.profile_pic, class: "card-trip-user avatar-bordered" %>
+                 </div>
             </div>
           </div>
           <% end %>

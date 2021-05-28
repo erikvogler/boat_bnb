@@ -38,14 +38,18 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
   end
   def update
+    @booking = Booking.find(params[:id])
     @booking.update(list_params)
-    redirect_to boat_bookings_path(@booking)
+    redirect_to boat_bookings_path(@booking.boat)
   end
 
   private
 
   def list_params
-    params.require(:booking).permit(:start_date, :end_date, :status, :value)
+    params.permit(:start_date, :end_date, :status, :total_value)
+  end
+  def booking_params
+    params.permit(:id)
   end
 
   def set_boat

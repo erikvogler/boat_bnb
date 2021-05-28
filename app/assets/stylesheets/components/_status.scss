@@ -1,12 +1,38 @@
+ul {
+  list-style: none;
+}
 .pending{
-  color:#E9C46A;
+  color: #E9C46A;
 }
 
-.accepted{
-  color:#2A9D8F;
+.confirmed{
+  color: #2A9D8F;
 }
 
 .rejected{
-color:#E76F51;
+  color: #E76F51;
 }
 
+.btn_accept{
+  background-color: #2A9D8F;
+  color: white;
+  padding: 5px 10px;
+  text-decoration: none;
+  border-radius: 7px;
+  &:hover{
+    background-color: #2A9D8F;
+    color: white;
+  }
+}
+
+.btn_reject{
+  background-color: #E76F51;
+  color: white;
+  padding: 5px 10px;
+  text-decoration: none;
+  border-radius: 7px;
+  &:hover{
+    background-color: #E76F51;
+    color: white;
+  }
+}
